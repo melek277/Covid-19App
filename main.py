@@ -1,5 +1,4 @@
 import streamlit as st
-import streamlit as st
 st.set_page_config(
     page_title="USA COVID-19 Data Analysis And Prediction",
     page_icon="🦠",
@@ -8,7 +7,6 @@ st.set_page_config(
 )
 
 
-import time  # to simulate a real time data, time loop
 
 import numpy as np  # np mean, np random
 import pandas as pd  # read csv, df manipulation
@@ -51,7 +49,7 @@ new_input = [[hospitalBedscurrentusagetotal,hospitalBedscurrentusagetotal, hospi
 new_input_transformed = poly.transform(new_input)
 predicted_output = lg.predict(new_input_transformed)
 
-print("Predicted output for new input:", predicted_output[0])
+print("Predicted Future Cases:", predicted_output[0])
 button=st.button("Predict",use_container_width=True)
 
 if button:
