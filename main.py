@@ -128,7 +128,6 @@ for seconds in range(200):
         st.markdown("### Detailed Data View")
         # df=df.drop('Unnamed: 0',axis=1)
         st.dataframe(df)
-        time.sleep(1)
 
 
 
