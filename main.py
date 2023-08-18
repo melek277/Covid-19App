@@ -20,7 +20,7 @@ from sklearn.preprocessing import PolynomialFeatures
 
 df = pd.read_csv('CleanCovid-19Dataset.csv')
 
-X = df[['actuals.hospitalBeds.currentUsageCovid','actuals.hospitalBeds.currentUsageCovid','actuals.hospitalBeds.weeklyCovidAdmissions']]
+X = df[['actuals.hospitalBeds.currentUsageTotal','actuals.hospitalBeds.currentUsageCovid','actuals.hospitalBeds.weeklyCovidAdmissions']]
 y = df['actuals.newCases']
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
@@ -41,11 +41,11 @@ predicted = lg.predict(x_test_)
 
 st.title("USA COVID-19 Data Analysis And Prediction")
 hospitalBedscurrentusagetotal= st.number_input("Enter the number of hospitalBeds in current Usage Total", value=0)
-hospitalBedscurrentusagetotal= st.number_input("Enter the number of hospitalBeds in current Usage Covid", value=0)
+hospitalBedscurrentusagecovid= st.number_input("Enter the number of hospitalBeds in current Usage Covid", value=0)
 hospitalBeds_weeklyCovidAdmissions= st.number_input("Enter the number of hospitalBeds_weekly Covid Admissions", value=0)
 
 
-new_input = [[hospitalBedscurrentusagetotal,hospitalBedscurrentusagetotal, hospitalBeds_weeklyCovidAdmissions]]  # New input value as a list of features (e.g., hospitalBeds.currentUsageCovid, hospitalBeds.currentUsageCovid, hospitalBeds.weeklyCovidAdmissions)
+new_input = [[hospitalBedscurrentusagetotal,hospitalBedscurrentusagecovid, hospitalBeds_weeklyCovidAdmissions]]  # New input value as a list of features (e.g., hospitalBeds.currentUsageCovid, hospitalBeds.currentUsageCovid, hospitalBeds.weeklyCovidAdmissions)
 new_input_transformed = poly.transform(new_input)
 predicted_output = lg.predict(new_input_transformed)
 
@@ -53,7 +53,7 @@ print("Predicted Future Cases:", predicted_output[0])
 button=st.button("Predict",use_container_width=True)
 
 if button:
-    new_input = [[hospitalBedscurrentusagetotal, hospitalBedscurrentusagetotal, hospitalBeds_weeklyCovidAdmissions]]  # New input value as a list of features (e.g., hospitalBeds.currentUsageCovid, hospitalBeds.currentUsageCovid, hospitalBeds.weeklyCovidAdmissions)
+    new_input = [[hospitalBedscurrentusagetotal, hospitalBedscurrentusagecovid, hospitalBeds_weeklyCovidAdmissions]]  # New input value as a list of features (e.g., hospitalBeds.currentUsageCovid, hospitalBeds.currentUsageCovid, hospitalBeds.weeklyCovidAdmissions)
     new_input_transformed = poly.transform(new_input)
     predicted_output = lg.predict(new_input_transformed)
     st.write("Predicted output for new input:", predicted_output[0])
